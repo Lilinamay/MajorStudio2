@@ -39,10 +39,11 @@ public class Player1 : MonoBehaviour
                         x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
                         if (BoyBehavior.currentHeart.tag == "heart")
                         {
-                            
+                            //player attack 1
                             Debug.Log(x);
                             if (x <= 1.3f && x > 0.5f)
                             {
+                                
                                 Debug.Log("perfect!");
                                 textTimer = 1.5f;
                                 rank.text = "perfect";
@@ -65,7 +66,8 @@ public class Player1 : MonoBehaviour
                                 ct += x;
                                 if (c == 2)
                                 {
-                                    if(ct <= 2.6)
+                                    //player attack part 2
+                                    if (ct <= 2.6)
                                     {
                                         Debug.Log("big perfect!");
                                         textTimer = 1.5f;
@@ -83,6 +85,10 @@ public class Player1 : MonoBehaviour
                                     }
                                     c = 0;
                                     ct = 0;
+                                }
+                                else
+                                {
+                                    //player attack 1
                                 }
                             }
                         }
