@@ -50,7 +50,7 @@ public class Player1 : MonoBehaviour
                             //player attack 1 animation
                             animator.SetTrigger("attack1");
                             Debug.Log(x);
-                            if (x <= 1.3f && x > 0.5f)
+                            if (x <= 1.8f && x > 0.9f)
                             {
                                 
                                 Debug.Log("perfect!");
@@ -59,7 +59,7 @@ public class Player1 : MonoBehaviour
                                 BoyBehavior.currentHeart.SetActive(false);
                                 boyHP -= 15;
                             }
-                            else if (x <= 1.9f && x > 1.3f)
+                            else if (x <= 2.5f && x > 1.8f)
                             {
                                 Debug.Log("ok");
                                 textTimer = 1.5f;
@@ -70,14 +70,15 @@ public class Player1 : MonoBehaviour
                         }else if(BoyBehavior.currentHeart.tag == "heartB")
                         {
                             c++;
-                            if (x <= 1.9f && x > 0.5f)
+                            if (x <= 2.5f && x > 0.9f)
                             {
                                 ct += x;
                                 if (c == 2)
                                 {
                                     //player attack part 2
+                                    Debug.Log("big attack: " + ct);
                                     animator.SetTrigger("attack1");
-                                    if (ct <= 2.6)
+                                    if (ct <= 3)
                                     {
                                         Debug.Log("big perfect!");
                                         textTimer = 1.5f;
@@ -85,7 +86,7 @@ public class Player1 : MonoBehaviour
                                         BoyBehavior.currentHeart.SetActive(false);
                                         boyHP -= 20;
                                     }
-                                    else if (ct<=3.5)
+                                    else if (ct<=3.8)
                                     {
                                         textTimer = 1.5f;
                                         Debug.Log("big ok");
