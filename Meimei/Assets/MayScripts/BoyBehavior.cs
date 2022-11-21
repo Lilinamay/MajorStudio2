@@ -20,14 +20,17 @@ public class BoyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Timer <= 0)
+        if (Player1.cgTimer <= 0)
         {
-            //boy attack animation
-            heartAttack();
-        }
-        else
-        {
-            Timer -= Time.deltaTime;
+            if (Timer <= 0)
+            {
+                //boy attack animation
+                heartAttack();
+            }
+            else
+            {
+                Timer -= Time.deltaTime;
+            }
         }
     }
     

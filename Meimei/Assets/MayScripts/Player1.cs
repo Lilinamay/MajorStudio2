@@ -16,10 +16,12 @@ public class Player1 : MonoBehaviour
     float textTimer = 0;
     int c = 0;
     float ct = 0;
+    public static float cgTimer = 5; //the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
     {
         rank.text = "";
+        //play power up animation from start or in update if(cgTimer = 3....etc) play animation
     }
 
     // Update is called once per frame
@@ -27,7 +29,11 @@ public class Player1 : MonoBehaviour
     {
         HPbar();
         //x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
-        if (Input.touchCount > 0)
+        if (cgTimer >= 0)
+        {
+            cgTimer -= Time.deltaTime;
+        }
+        if (Input.touchCount > 0 && cgTimer<0)
         {
             t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
