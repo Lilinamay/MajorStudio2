@@ -76,6 +76,7 @@ public class Player1 : MonoBehaviour
                                 if (c == 2)
                                 {
                                     //player attack part 2
+                                    animator.SetTrigger("attack1");
                                     if (ct <= 2.6)
                                     {
                                         Debug.Log("big perfect!");
@@ -98,6 +99,7 @@ public class Player1 : MonoBehaviour
                                 else
                                 {
                                     //player attack 1
+                                    animator.SetTrigger("attack1");
                                 }
                             }
                         }
