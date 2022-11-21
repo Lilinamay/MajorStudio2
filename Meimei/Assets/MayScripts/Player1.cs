@@ -39,7 +39,7 @@ public class Player1 : MonoBehaviour
                         x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
                         if (BoyBehavior.currentHeart.tag == "heart")
                         {
-                            //player attack 1
+                            //player attack 1 animation
                             Debug.Log(x);
                             if (x <= 1.3f && x > 0.5f)
                             {

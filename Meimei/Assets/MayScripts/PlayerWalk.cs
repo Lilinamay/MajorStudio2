@@ -26,7 +26,7 @@ public class PlayerWalk : MonoBehaviour
             {
                 if (Camera.main.ScreenToWorldPoint(t.position).x <= this.transform.position.x)
                 {
-                    //start animation
+                    //start walk animation
                     speed = 2;
                 }
             }
@@ -35,8 +35,7 @@ public class PlayerWalk : MonoBehaviour
                 down = true;
                 DOTween.To(() => speed, x => speed = x, 0, 1).SetEase(Ease.InQuart).OnComplete(() =>
                 {
-                    //    a = 5;
-                    //});
+                    //stop animation
                     Debug.Log("finished");
                 });
             }
