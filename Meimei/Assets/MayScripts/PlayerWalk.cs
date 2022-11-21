@@ -9,10 +9,11 @@ public class PlayerWalk : MonoBehaviour
     float speed = 0;
     bool down = false;
     public static bool camTrigger = false;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,7 +28,9 @@ public class PlayerWalk : MonoBehaviour
                 if (Camera.main.ScreenToWorldPoint(t.position).x <= this.transform.position.x)
                 {
                     //start walk animation
+                    animator.SetBool("walk", true);
                     speed = 2;
+
                 }
             }
             else if (t.phase == TouchPhase.Ended)
@@ -36,6 +39,7 @@ public class PlayerWalk : MonoBehaviour
                 DOTween.To(() => speed, x => speed = x, 0, 1).SetEase(Ease.InQuart).OnComplete(() =>
                 {
                     //stop animation
+                    animator.SetBool("walk", false);
                     Debug.Log("finished");
                 });
             }

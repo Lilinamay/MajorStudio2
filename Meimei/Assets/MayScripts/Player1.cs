@@ -16,11 +16,13 @@ public class Player1 : MonoBehaviour
     float textTimer = 0;
     int c = 0;
     float ct = 0;
+    Animator animator;
     public static float cgTimer = 5; //the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
     {
         rank.text = "";
+        animator = GetComponent<Animator>();
         //play power up animation from start or in update if(cgTimer = 3....etc) play animation
     }
 
@@ -46,6 +48,7 @@ public class Player1 : MonoBehaviour
                         if (BoyBehavior.currentHeart.tag == "heart")
                         {
                             //player attack 1 animation
+                            animator.SetTrigger("attack1");
                             Debug.Log(x);
                             if (x <= 1.3f && x > 0.5f)
                             {
