@@ -21,6 +21,7 @@ public class Player1 : MonoBehaviour
     Animator animator;
     int hit= 0;
     int hitHealth = 0;
+    
     public static float cgTimer = 5; //the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
@@ -45,56 +46,64 @@ public class Player1 : MonoBehaviour
             t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
             {
-                if (BoyBehavior.currentHeart != null)
+                Vector3 wp = Camera.main.ScreenToWorldPoint(t.position);
+                Vector2 touchPos = new Vector2(wp.x, wp.y);
+                Collider2D hit = Physics2D.OverlapPoint(touchPos);
+                if (hit && hit == gameObject.GetComponent<Collider2D>())
                 {
-                    if (BoyBehavior.currentHeart.activeSelf == true)
+                    animator.SetTrigger("attack1");
+                    if (BoyBehavior.currentHeart != null)
                     {
-                        x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
-                        if (BoyBehavior.currentHeart.tag == "heart")
+                        if (BoyBehavior.currentHeart.activeSelf == true)
                         {
-                            //player attack 1 animation
-                            animator.SetTrigger("attack1");
-                            Debug.Log(x);
-                            if (x <= 2.6f && x > 1.6f)
+                            x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
+                            if (BoyBehavior.currentHeart.tag == "heart")
                             {
-                                HitSet(2,15);
-                                //PerfectHit();
-                                Debug.Log("perfect!");
-                                
-                            }
-                            else if (x <= 3.1f && x > 2.6)
-                            {
-                                HitSet(1,5);
-                                Debug.Log("ok");
-                            }
-                        }else if(BoyBehavior.currentHeart.tag == "heartB")
-                        {
-                            c++;
-                            if (x <= 3.1f && x > 1.6f)
-                            {
-                                ct += x;
-                                if (c == 2)
+                                //player attack 1 animation
+                                animator.SetTrigger("attack1");
+                                Debug.Log(x);
+                                if (x <= 2.6f && x > 1.6f)
                                 {
-                                    //player attack part 2
-                                    Debug.Log("big attack: " + ct);
-                                    animator.SetTrigger("attack1");
-                                    if (ct <= 4.8)
-                                    {
-                                        HitSet(2,20);
-                                        Debug.Log("big perfect!");
-                                    }
-                                    else if (ct<=5.6)
-                                    {
-                                        HitSet(1,10);
-                                        Debug.Log("big ok!");
-                                    }
-                                    c = 0;
-                                    ct = 0;
+                                    HitSet(2, 15);
+                                    //PerfectHit();
+                                    Debug.Log("perfect!");
+
                                 }
-                                else
+                                else if (x <= 3.1f && x > 2.6)
                                 {
-                                    //player attack 1
-                                    animator.SetTrigger("attack1");
+                                    HitSet(1, 5);
+                                    Debug.Log("ok");
+                                }
+                            }
+                            else if (BoyBehavior.currentHeart.tag == "heartB")
+                            {
+                                c++;
+                                if (x <= 3.1f && x > 1.6f)
+                                {
+                                    ct += x;
+                                    if (c == 2)
+                                    {
+                                        //player attack part 2
+                                        Debug.Log("big attack: " + ct);
+                                        animator.SetTrigger("attack1");
+                                        if (ct <= 4.8)
+                                        {
+                                            HitSet(2, 20);
+                                            Debug.Log("big perfect!");
+                                        }
+                                        else if (ct <= 5.6)
+                                        {
+                                            HitSet(1, 10);
+                                            Debug.Log("big ok!");
+                                        }
+                                        c = 0;
+                                        ct = 0;
+                                    }
+                                    else
+                                    {
+                                        //player attack 1
+                                        animator.SetTrigger("attack1");
+                                    }
                                 }
                             }
                         }

@@ -21,7 +21,7 @@ public class HeartBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("trigger");
-        if (CompareTag("heart")|| CompareTag("heartB"))
+        if (collision.name == "friend")
         {
             gameObject.SetActive(false);
             Player1.girlHP -= 20;
