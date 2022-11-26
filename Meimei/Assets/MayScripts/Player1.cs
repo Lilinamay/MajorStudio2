@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class Player1 : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class Player1 : MonoBehaviour
     [SerializeField] Image girl;
     [SerializeField] TMP_Text rank;
     float textTimer = 0;
+    float hitTimer = 0;
     int c = 0;
     float ct = 0;
     Animator animator;
+    int hit= 0;
+    int hitHealth = 0;
     public static float cgTimer = 5; //the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
@@ -30,6 +34,7 @@ public class Player1 : MonoBehaviour
     void Update()
     {
         HPbar();
+        HitTimer();
         //x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
         if (cgTimer >= 0)
         {
@@ -50,27 +55,22 @@ public class Player1 : MonoBehaviour
                             //player attack 1 animation
                             animator.SetTrigger("attack1");
                             Debug.Log(x);
-                            if (x <= 1.8f && x > 0.9f)
+                            if (x <= 2.6f && x > 1.6f)
                             {
-                                
+                                HitSet(2,15);
+                                //PerfectHit();
                                 Debug.Log("perfect!");
-                                textTimer = 1.5f;
-                                rank.text = "perfect";
-                                BoyBehavior.currentHeart.SetActive(false);
-                                boyHP -= 15;
+                                
                             }
-                            else if (x <= 2.5f && x > 1.8f)
+                            else if (x <= 3.1f && x > 2.6)
                             {
+                                HitSet(1,5);
                                 Debug.Log("ok");
-                                textTimer = 1.5f;
-                                rank.text = "ok";
-                                BoyBehavior.currentHeart.SetActive(false);
-                                boyHP -= 5;
                             }
                         }else if(BoyBehavior.currentHeart.tag == "heartB")
                         {
                             c++;
-                            if (x <= 2.5f && x > 0.9f)
+                            if (x <= 3.1f && x > 1.6f)
                             {
                                 ct += x;
                                 if (c == 2)
@@ -78,21 +78,15 @@ public class Player1 : MonoBehaviour
                                     //player attack part 2
                                     Debug.Log("big attack: " + ct);
                                     animator.SetTrigger("attack1");
-                                    if (ct <= 3)
+                                    if (ct <= 4.8)
                                     {
+                                        HitSet(2,20);
                                         Debug.Log("big perfect!");
-                                        textTimer = 1.5f;
-                                        rank.text = "perfect";
-                                        BoyBehavior.currentHeart.SetActive(false);
-                                        boyHP -= 20;
                                     }
-                                    else if (ct<=3.8)
+                                    else if (ct<=5.6)
                                     {
-                                        textTimer = 1.5f;
-                                        Debug.Log("big ok");
-                                        rank.text = "ok";
-                                        BoyBehavior.currentHeart.SetActive(false);
-                                        boyHP -= 10;
+                                        HitSet(1,10);
+                                        Debug.Log("big ok!");
                                     }
                                     c = 0;
                                     ct = 0;
@@ -123,4 +117,61 @@ public class Player1 : MonoBehaviour
             rank.text = "";
         }
     }
+    void HitTimer()
+    {
+        if (hitTimer > 0)
+        {
+            hitTimer -= Time.deltaTime;
+        }
+        else
+        {
+            if (hit>0)
+            {
+                StartCoroutine(HitAfter());
+                if (hit == 2)
+                {
+                    StartCoroutine(HitPerfAfter());
+                    rank.text = "perfect";
+                    Time.timeScale = 0.4f;
+                    
+                }else if(hit == 1)
+                {
+                    rank.text = "OK";
+                }
+                boyHP -= hitHealth;
+                textTimer = 1.5f;
+                BoyBehavior.currentHeart.SetActive(false);
+                
+                hit = 0;
+                hitHealth = 0;
+                Debug.Log("onHit");
+                
+            }
+        }
+    }
+
+    IEnumerator HitAfter()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (hit == 2)
+        {
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
+        }
+        Camera.main.DOOrthoSize(5f, 0.2f).SetEase(Ease.InQuart);
+    }
+    IEnumerator HitPerfAfter()
+    {
+        yield return new WaitForSeconds(0.1f);
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
+    }
+    void HitSet(int h,int health)
+    {
+        Debug.Log("origin size" + Camera.main.orthographicSize);
+        hit = h;
+        hitTimer = 0.4f;
+        hitHealth = health;
+        Camera.main.DOOrthoSize(4.8f,0.39f).SetEase(Ease.InQuart);
+        //Debug.Log("after size" + Camera.main.orthographicSize);
+    }
+
 }
