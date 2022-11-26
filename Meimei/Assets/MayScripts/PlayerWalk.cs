@@ -6,10 +6,11 @@ using DG.Tweening;
 public class PlayerWalk : MonoBehaviour
 {
     private Touch t;
-    float speed = 0;
+    public float speed = 0;
     bool down = false;
     public static bool camTrigger = false;
     private Animator animator;
+    public Tweener currentTween;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,10 @@ public class PlayerWalk : MonoBehaviour
             t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
             {
+                if (currentTween != null)
+                {
+                    currentTween.Kill();
+                }
                 if (Camera.main.ScreenToWorldPoint(t.position).x <= this.transform.position.x)
                 {
                     //start walk animation
@@ -36,11 +41,12 @@ public class PlayerWalk : MonoBehaviour
             else if (t.phase == TouchPhase.Ended)
             {
                 down = true;
-                DOTween.To(() => speed, x => speed = x, 0, 1).SetEase(Ease.InQuart).OnComplete(() =>
+                currentTween=DOTween.To(() => speed, x => speed = x, 0, 1).SetEase(Ease.InQuart).OnComplete(() =>
                 {
                     //stop animation
                     animator.SetBool("walk", false);
                     Debug.Log("finished");
+                    currentTween = null;
                 });
             }
         }
