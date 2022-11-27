@@ -6,6 +6,7 @@ public class HeartBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     float speed = 3;
+    public int Damage;
     void Start()
     {
         
@@ -20,11 +21,12 @@ public class HeartBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("trigger");
-        if (collision.name == "friend")
+        Debug.Log("trigger");
+        if (collision.name == "Friend")
         {
+            Player1.girlHP -= Damage;
             gameObject.SetActive(false);
-            Player1.girlHP -= 20;
+            
         }
     }
 }
