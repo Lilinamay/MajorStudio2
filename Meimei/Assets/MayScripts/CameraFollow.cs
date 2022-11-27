@@ -6,8 +6,8 @@ public class CameraFollow : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform player;
-    public Vector3 cameraOffset=new Vector3(-5,-3);
-    public float cameraSpeed = 0.1f;
+    public Vector3 cameraOffset=new Vector3(9,-3);
+    public float cameraSpeed = 0.5f;
     void Start()
     {
         //.position = player.position + cameraOffset;
