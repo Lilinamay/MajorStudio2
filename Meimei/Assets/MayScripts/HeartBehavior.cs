@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeartBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
-    float speed = 3;
+    float speed = 7;
     public int Damage;
     void Start()
     {
