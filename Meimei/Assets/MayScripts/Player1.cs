@@ -29,6 +29,7 @@ public class Player1 : MonoBehaviour
         rank.text = "";
         animator = GetComponent<Animator>();
         //play power up animation from start or in update if(cgTimer = 3....etc) play animation
+        StartCoroutine(turnS());
     }
 
     // Update is called once per frame
@@ -85,7 +86,7 @@ public class Player1 : MonoBehaviour
                                     {
                                         //player attack part 2
                                         Debug.Log("big attack: " + ct);
-                                        animator.SetTrigger("attack1");
+                                        animator.SetTrigger("attack2");
                                         if (ct <= 4.8)
                                         {
                                             HitSet(2, 20);
@@ -159,6 +160,11 @@ public class Player1 : MonoBehaviour
         }
     }
 
+    IEnumerator turnS()
+    {
+        yield return new WaitForSeconds(2.5f);
+        animator.SetTrigger("turn");
+    }
     IEnumerator HitAfter()
     {
         yield return new WaitForSeconds(0.1f);
