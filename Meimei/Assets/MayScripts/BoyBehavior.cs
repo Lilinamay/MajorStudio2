@@ -12,23 +12,30 @@ public class BoyBehavior : MonoBehaviour
     public float Timer = 0;
     public static GameObject currentHeart;
     public int i = -1;
-    public Image chatBox;
+    public GameObject chatObject;
+    bool attack = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        chatObject.GetComponent<chatBox>().disableEmote();
+        //chatBox.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Player1.cgTimer <= 0)
+        if (Player1Update.cgTimer <= 0)
         {
-            if (Timer <= 0)
+            if (Timer <= 0 )
             {
                 //boy attack animation
                 //heartAttack();
-                BoxAttack();
+                //BoxAttack();
+                chatObject.SetActive(true);
+                chatObject.GetComponent<chatBox>().chatInit();
+                //attack = true;
+                Timer = 10;
+                Debug.Log("ENABLE CHATBOX");
             }
             else
             {
@@ -50,6 +57,6 @@ public class BoyBehavior : MonoBehaviour
 
     void BoxAttack()
     {
-        chatBox.enabled = true;
+        //chatBox.enabled = true;
     }
 }

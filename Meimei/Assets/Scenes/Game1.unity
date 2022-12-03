@@ -1016,7 +1016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &533133629
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   - 0
   Timer: 0
   i: -1
-  chatBox: {fileID: 533133630}
+  chatObject: {fileID: 533133628}
 --- !u!1 &1252544341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,6 +2478,7 @@ GameObject:
   - component: {fileID: 1837631187}
   - component: {fileID: 1837631188}
   - component: {fileID: 1837631189}
+  - component: {fileID: 1837631190}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2559,7 +2560,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837631184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e31ae2684b98584793f3aba7620c5df, type: 3}
   m_Name: 
@@ -2614,6 +2615,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.631143, y: 6.1033335}
   m_EdgeRadius: 0
+--- !u!114 &1837631190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837631184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af183a1f553f2694da528e270d541c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  boy: {fileID: 2048319715}
+  girl: {fileID: 1924227275}
+  rank: {fileID: 1891997681}
+  chat: {fileID: 533133632}
 --- !u!1 &1891997679
 GameObject:
   m_ObjectHideFlags: 0

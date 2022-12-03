@@ -5,12 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public class Player1 : MonoBehaviour
+public class Player1Update : MonoBehaviour
 {
     private Touch t;
     public float x;
-    public static float boyHP=100;
-    public static float girlHP=100;
+    public static float boyHP = 100;
+    public static float girlHP = 100;
     [SerializeField] Image boy;
     [SerializeField] Image girl;
     [SerializeField] TMP_Text rank;
@@ -19,11 +19,11 @@ public class Player1 : MonoBehaviour
     int c = 0;
     float ct = 0;
     Animator animator;
-    int hit= 0;
+    int hit = 0;
     int hitHealth = 0;
-    
-    
-    public static float cgTimer = 5; //the amount of time for cutscene before accepting player input
+    [SerializeField] chatBox chat;
+
+    public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +43,7 @@ public class Player1 : MonoBehaviour
         {
             cgTimer -= Time.deltaTime;
         }
-        if (Input.touchCount > 0 && cgTimer<0)
+        if (Input.touchCount > 0 && cgTimer < 0)
         {
             t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
@@ -54,30 +54,31 @@ public class Player1 : MonoBehaviour
                 if (hit && hit == gameObject.GetComponent<Collider2D>())
                 {
                     animator.SetTrigger("attack1");
-                    if (BoyBehavior.currentHeart != null)
+                    Debug.Log("perfect timeL " + chatBox.perfectTime);
+                    if (chatBox.perfectTime>0)
                     {
-                        if (BoyBehavior.currentHeart.activeSelf == true)
-                        {
-                            x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
-                            if (BoyBehavior.currentHeart.tag == "heart")
+                        
+                            //x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
+                            if (chatBox.perfectTime <=1f)
                             {
                                 //player attack 1 animation
-                                animator.SetTrigger("attack1");
+                                //animator.SetTrigger("attack1");
                                 Debug.Log(x);
-                                if (x <= 2.6f && x > 1.6f)
+                                if (chatBox.perfectTime <= 0.3f)
                                 {
                                     HitSet(2, 15);
                                     //PerfectHit();
                                     Debug.Log("perfect!");
 
                                 }
-                                else if (x <= 3.1f && x > 2.6)
+                                else if (chatBox.perfectTime <= 1)
                                 {
                                     HitSet(1, 5);
                                     Debug.Log("ok");
                                 }
+                                
                             }
-                            else if (BoyBehavior.currentHeart.tag == "heartB")
+                            /*else if (BoyBehavior.currentHeart.tag == "heartB")
                             {
                                 c++;
                                 if (x <= 3.1f && x > 1.6f)
@@ -107,8 +108,8 @@ public class Player1 : MonoBehaviour
                                         animator.SetTrigger("attack1");
                                     }
                                 }
-                            }
-                        }
+                            
+                        }*/
                     }
                 }
             }
@@ -119,7 +120,7 @@ public class Player1 : MonoBehaviour
     {
         boy.fillAmount = boyHP / 100;
         girl.fillAmount = girlHP / 100;
-        if(textTimer > 0)
+        if (textTimer > 0)
         {
             textTimer -= Time.deltaTime;
         }
@@ -136,7 +137,7 @@ public class Player1 : MonoBehaviour
         }
         else
         {
-            if (hit>0)
+            if (hit > 0)
             {
                 StartCoroutine(HitAfter());
                 if (hit == 2)
@@ -144,31 +145,33 @@ public class Player1 : MonoBehaviour
                     StartCoroutine(HitPerfAfter());
                     rank.text = "perfect";
                     Time.timeScale = 0.4f;
-                    
-                }else if(hit == 1)
+
+                }
+                else if (hit == 1)
                 {
                     rank.text = "OK";
                 }
                 boyHP -= hitHealth;
                 textTimer = 1.5f;
-                BoyBehavior.currentHeart.SetActive(false);
-                
+                //BoyBehavior.currentHeart.SetActive(false);
+
                 hit = 0;
                 hitHealth = 0;
                 Debug.Log("onHit");
-                
+
             }
         }
     }
 
     IEnumerator turnS()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);//2.5f
         animator.SetTrigger("turn");
     }
     IEnumerator HitAfter()
     {
         yield return new WaitForSeconds(0.1f);
+        chat.disableEmote();
         if (hit == 2)
         {
             DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
@@ -177,17 +180,19 @@ public class Player1 : MonoBehaviour
     }
     IEnumerator HitPerfAfter()
     {
+        chat.disableEmote();
         yield return new WaitForSeconds(0.1f);
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
     }
-    void HitSet(int h,int health)
+    void HitSet(int h, int health)
     {
         Debug.Log("origin size" + Camera.main.orthographicSize);
         hit = h;
         hitTimer = 0.4f;
         hitHealth = health;
-        Camera.main.DOOrthoSize(4.8f,0.39f).SetEase(Ease.InQuart);
+        Camera.main.DOOrthoSize(4.8f, 0.39f).SetEase(Ease.InQuart);
         //Debug.Log("after size" + Camera.main.orthographicSize);
     }
 
 }
+

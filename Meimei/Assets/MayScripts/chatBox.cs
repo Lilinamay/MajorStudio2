@@ -9,15 +9,14 @@ public class chatBox : MonoBehaviour
     float value = 0f;
     float init = 5f;
     public List<Image> emoteImage;
+    float speed = 2.5f;
+    public static float perfectTime;
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Image i in emoteImage)
-        {
-            i.enabled = false;
-            Debug.Log(i);
-        }
-        chatInit();
+
+        //disableEmote();
+        //gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,7 +27,7 @@ public class chatBox : MonoBehaviour
         //Resize(1, new Vector3(0.01f, 0, 0));
         if (value >= 0.09f)
         {
-            value -= Time.deltaTime;
+            value -= Time.deltaTime*speed;
             if (value <= 4.5f && emoteImage[0].enabled == false)
             {
                 emoteImage[0].enabled = true;
@@ -52,7 +51,9 @@ public class chatBox : MonoBehaviour
             }
             box.rectTransform.offsetMax = new Vector2(-value, box.rectTransform.offsetMax.y);
         }
-        
+        calculateScore();
+
+
 
 
     }
@@ -69,9 +70,28 @@ public class chatBox : MonoBehaviour
         });
     }
 
-    void valuechange()
+    public  void disableEmote()
     {
-        
+        foreach (Image i in emoteImage)
+        {
+            i.enabled = false;
+        }
+        gameObject.SetActive(false);
+    }
+
+    public void calculateScore()
+    {
+        if (emoteImage[4].enabled)
+        {
+            perfectTime += Time.deltaTime;//bug hit heart continue stopo hit
+        }
+        else
+        {
+            if (perfectTime != 0)
+            {
+                perfectTime = 0;
+            }
+        }
     }
 
 
