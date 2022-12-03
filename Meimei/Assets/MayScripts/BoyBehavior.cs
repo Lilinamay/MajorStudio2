@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoyBehavior : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class BoyBehavior : MonoBehaviour
     public float Timer = 0;
     public static GameObject currentHeart;
     public int i = -1;
+    public Image chatBox;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,8 @@ public class BoyBehavior : MonoBehaviour
             if (Timer <= 0)
             {
                 //boy attack animation
-                heartAttack();
+                //heartAttack();
+                BoxAttack();
             }
             else
             {
@@ -43,5 +46,10 @@ public class BoyBehavior : MonoBehaviour
             currentHeart = heart[i];
             Timer = waitTime[i];
         }
+    }
+
+    void BoxAttack()
+    {
+        chatBox.enabled = true;
     }
 }
