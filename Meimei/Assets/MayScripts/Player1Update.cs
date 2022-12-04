@@ -61,9 +61,10 @@ public class Player1Update : MonoBehaviour
                             //x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
                             if (chatBox.perfectTime <=1f)
                             {
+                                chatBox.heart = false;
                                 //player attack 1 animation
                                 //animator.SetTrigger("attack1");
-                                Debug.Log(x);
+                                //Debug.Log(x);
                                 if (chatBox.perfectTime <= 0.3f)
                                 {
                                     HitSet(2, 15);

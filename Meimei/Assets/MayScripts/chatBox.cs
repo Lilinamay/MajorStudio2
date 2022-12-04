@@ -11,6 +11,7 @@ public class chatBox : MonoBehaviour
     public List<Image> emoteImage;
     float speed = 2.5f;
     public static float perfectTime;
+    public static bool  heart= false;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,7 @@ public class chatBox : MonoBehaviour
             if (value <= 0.1f && emoteImage[4].enabled == false)
             {
                 emoteImage[4].enabled = true;
+                heart = true;
             }
             box.rectTransform.offsetMax = new Vector2(-value, box.rectTransform.offsetMax.y);
         }
@@ -64,7 +66,7 @@ public class chatBox : MonoBehaviour
         //value = init;
         //box.rectTransform.sizeDelta = new Vector3(0, 0, 0);
         box.rectTransform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), 0f);
-        box.rectTransform.DOScale(new Vector3(1, 1, 1), 0.7f).OnComplete(() =>
+        box.rectTransform.DOScale(new Vector3(1, 1, 1), 0.4f).OnComplete(() =>
         {
             value = init;
         });
@@ -81,7 +83,7 @@ public class chatBox : MonoBehaviour
 
     public void calculateScore()
     {
-        if (emoteImage[4].enabled)
+        if (heart)
         {
             perfectTime += Time.deltaTime;//bug hit heart continue stopo hit
         }
