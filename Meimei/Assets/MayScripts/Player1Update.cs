@@ -22,6 +22,7 @@ public class Player1Update : MonoBehaviour
     int hit = 0;
     int hitHealth = 0;
     [SerializeField] chatBox chat;
+    public static bool heartMove = false;
 
     public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
@@ -43,6 +44,11 @@ public class Player1Update : MonoBehaviour
         {
             cgTimer -= Time.deltaTime;
         }
+        if (chatBox.perfectTime > 0.5f)
+        {
+            heartMove = true;
+            chatBox.heart = false;
+        }
         if (Input.touchCount > 0 && cgTimer < 0)
         {
             t = Input.GetTouch(0);
@@ -51,6 +57,7 @@ public class Player1Update : MonoBehaviour
                 Vector3 wp = Camera.main.ScreenToWorldPoint(t.position);
                 Vector2 touchPos = new Vector2(wp.x, wp.y);
                 Collider2D hit = Physics2D.OverlapPoint(touchPos);
+
                 if (hit && hit == gameObject.GetComponent<Collider2D>())
                 {
                     animator.SetTrigger("attack1");
@@ -59,26 +66,27 @@ public class Player1Update : MonoBehaviour
                     {
                         
                             //x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
-                            if (chatBox.perfectTime <=1f)
+                            if (chatBox.perfectTime <=0.5f)
                             {
                                 chatBox.heart = false;
                                 //player attack 1 animation
                                 //animator.SetTrigger("attack1");
                                 //Debug.Log(x);
-                                if (chatBox.perfectTime <= 0.3f)
+                                if (chatBox.perfectTime <= 0.2f)
                                 {
                                     HitSet(2, 15);
                                     //PerfectHit();
                                     Debug.Log("perfect!");
 
                                 }
-                                else if (chatBox.perfectTime <= 1)
+                                else if (chatBox.perfectTime <= 0.5f)
                                 {
                                     HitSet(1, 5);
                                     Debug.Log("ok");
                                 }
                                 
                             }
+                            
                             /*else if (BoyBehavior.currentHeart.tag == "heartB")
                             {
                                 c++;
@@ -183,7 +191,7 @@ public class Player1Update : MonoBehaviour
     {
         chat.disableEmote();
         yield return new WaitForSeconds(0.1f);
-        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.1f).SetEase(Ease.InQuart);  //if perfect hit
     }
     void HitSet(int h, int health)
     {
@@ -191,7 +199,7 @@ public class Player1Update : MonoBehaviour
         hit = h;
         hitTimer = 0.4f;
         hitHealth = health;
-        Camera.main.DOOrthoSize(4.8f, 0.39f).SetEase(Ease.InQuart);
+        Camera.main.DOOrthoSize(4.8f, 0.2f).SetEase(Ease.InQuart);
         //Debug.Log("after size" + Camera.main.orthographicSize);
     }
 

@@ -72,7 +72,7 @@ public class chatBox : MonoBehaviour
         });
     }
 
-    public  void disableEmote()
+    public void disableEmote()
     {
         foreach (Image i in emoteImage)
         {
