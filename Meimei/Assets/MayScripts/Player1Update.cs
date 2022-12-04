@@ -23,6 +23,8 @@ public class Player1Update : MonoBehaviour
     int hitHealth = 0;
     [SerializeField] chatBox chat;
     public static bool heartMove = false;
+    [SerializeField] Image speedLine;
+
 
     public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
@@ -161,6 +163,7 @@ public class Player1Update : MonoBehaviour
                     rank.text = "OK";
                 }
                 boyHP -= hitHealth;
+                //DOTween.To(() => boyHP, x => Time.timeScale = x, boyHP-hitHealth, 0.2f).SetEase(Ease.InQuart);
                 textTimer = 1.5f;
                 //BoyBehavior.currentHeart.SetActive(false);
 
@@ -180,6 +183,7 @@ public class Player1Update : MonoBehaviour
     IEnumerator HitAfter()
     {
         yield return new WaitForSeconds(0.1f);
+        speedLine.DOFade(0, 0.2F);
         chat.disableEmote();
         if (hit == 2)
         {
@@ -200,6 +204,7 @@ public class Player1Update : MonoBehaviour
         hitTimer = 0.4f;
         hitHealth = health;
         Camera.main.DOOrthoSize(4.8f, 0.2f).SetEase(Ease.InQuart);
+        speedLine.DOFade(1, 0.2F);
         //Debug.Log("after size" + Camera.main.orthographicSize);
     }
 

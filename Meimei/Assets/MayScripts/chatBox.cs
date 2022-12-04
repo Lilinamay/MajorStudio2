@@ -12,6 +12,7 @@ public class chatBox : MonoBehaviour
     float speed = 2.5f;
     public static float perfectTime;
     public static bool  heart= false;
+    public List<Sprite> emotes;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +63,11 @@ public class chatBox : MonoBehaviour
 
     public void chatInit()
     {
+        for(int i =0; i<emoteImage.Count-1;i++)
+        {
+            int x = Random.Range(0, emotes.Count);
+            emoteImage[i].sprite=emotes[x];
+        }
         box.rectTransform.offsetMax = new Vector2(-init, box.rectTransform.offsetMax.y);
         //value = init;
         //box.rectTransform.sizeDelta = new Vector3(0, 0, 0);
@@ -70,6 +76,7 @@ public class chatBox : MonoBehaviour
         {
             value = init;
         });
+
     }
 
     public void disableEmote()
