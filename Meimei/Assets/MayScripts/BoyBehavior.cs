@@ -14,10 +14,12 @@ public class BoyBehavior : MonoBehaviour
     public int i = -1;
     public GameObject chatObject;
     bool attack = false;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         chatObject.GetComponent<chatBox>().disableEmote();
+        animator = GetComponent<Animator>();
         //chatBox.SetActive(false);
     }
 
@@ -28,13 +30,25 @@ public class BoyBehavior : MonoBehaviour
         {
             if (Timer <= 0 )
             {
+                Timer = 10;
                 //boy attack animation
                 //heartAttack();
                 //BoxAttack();
+                int x = Random.Range(0, 2);
+                if (x == 0)
+                {
+                    animator.SetTrigger("attack");
+                }
+                if (x == 1)
+                {
+                    animator.SetTrigger("attack2");
+                }
+                
+
                 chatObject.SetActive(true);
                 chatObject.GetComponent<chatBox>().chatInit();
                 //attack = true;
-                Timer = 10;
+                
                 Debug.Log("ENABLE CHATBOX");
             }
             else

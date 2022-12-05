@@ -19,11 +19,13 @@ public class Player1Update : MonoBehaviour
     int c = 0;
     float ct = 0;
     Animator animator;
+    [SerializeField] Animator heartanimator;
     int hit = 0;
     int hitHealth = 0;
     [SerializeField] chatBox chat;
     public static bool heartMove = false;
     [SerializeField] Image speedLine;
+    [SerializeField] Image TxtImage;
 
 
     public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
@@ -138,6 +140,7 @@ public class Player1Update : MonoBehaviour
         else
         {
             rank.text = "";
+            //TxtImage.enabled = false;
         }
     }
     void HitTimer()
@@ -154,12 +157,14 @@ public class Player1Update : MonoBehaviour
                 if (hit == 2)
                 {
                     StartCoroutine(HitPerfAfter());
+                    TxtImage.enabled = true;
                     rank.text = "perfect";
                     Time.timeScale = 0.4f;
 
                 }
                 else if (hit == 1)
                 {
+                    TxtImage.enabled = true;
                     rank.text = "OK";
                 }
                 boyHP -= hitHealth;
@@ -184,6 +189,7 @@ public class Player1Update : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         speedLine.DOFade(0, 0.2F);
+        TxtImage.enabled = false;
         chat.disableEmote();
         if (hit == 2)
         {
@@ -200,6 +206,8 @@ public class Player1Update : MonoBehaviour
     void HitSet(int h, int health)
     {
         Debug.Log("origin size" + Camera.main.orthographicSize);
+        heartanimator.SetTrigger("small");
+        TxtImage.enabled = true;
         hit = h;
         hitTimer = 0.4f;
         hitHealth = health;
