@@ -12,6 +12,7 @@ public class cutsceneManager : MonoBehaviour
     public Tweener currentTween2;
     public Tweener currentTween3;
     public Tweener currentTween4;
+    public Tweener currentTween5;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,14 +44,14 @@ public class cutsceneManager : MonoBehaviour
                         break;
                     case 3:     //move boy1
                         imgs[1].SetActive(true);
-                        currentTween = imgs[1].transform.DOMoveY(-0.86f, 0.5f).OnComplete(() =>
+                        currentTween5 = imgs[1].transform.DOMoveY(-0.86f, 0.5f).OnComplete(() =>
                         {
                             s = 5;
                         });
                         s++;
                         break;
                     case 4:
-                        currentTween.Goto(0.5f);    //GO to complete time
+                        currentTween5.Goto(0.5f);    //GO to complete time
                         s++;
                         break;
                     case 5:     //move boy girl2

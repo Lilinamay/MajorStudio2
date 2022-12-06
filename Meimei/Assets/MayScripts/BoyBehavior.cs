@@ -30,7 +30,7 @@ public class BoyBehavior : MonoBehaviour
         {
             if (Timer <= 0 )
             {
-                Timer = 10;
+                Timer = 10f;     //time until next attack
                 //boy attack animation
                 //heartAttack();
                 //BoxAttack();

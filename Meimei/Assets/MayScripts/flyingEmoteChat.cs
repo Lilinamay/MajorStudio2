@@ -3,30 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public class chatBox : MonoBehaviour
+public class flyingEmoteChat : MonoBehaviour
 {
     public Image box;
     float value = 0f;
     float init = 5f;
     public List<Image> emoteImage;
     float speed = 5f;
-    float chatMoveSpeed = 4f;
     public static float perfectTime;
-    public static bool  heart= false;
+    public static bool heart = false;
     public List<Sprite> emotes;
-    [System.Serializable]
-    public class serializableClass
-    {
-        public List<bool> ifheart;
-    }
-    public List<serializableClass> attacks = new List<serializableClass>();
-    public int hello = 0;
     bool ok = false;
-    int i = -1;
-    float spawnTimer = 0;
-    public float spawnTimerEnter = 1f;
-    [SerializeField] Sprite heartSprite;
-    int currentAttack = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,43 +57,20 @@ public class chatBox : MonoBehaviour
         */
         //if (value >= 3.4f)
         {
-            
-            if (ok&& currentAttack<attacks.Count)
+
+            if (value >= 3.4f)
             {
-                if (spawnTimer > 0)
+                if (emoteImage[0].enabled == false)
                 {
-                    spawnTimer -= Time.deltaTime;
+                    emoteImage[0].enabled = true;
                 }
-                if (spawnTimer <= 0)
-                {
-                    i++;
-                    {
-                        if (attacks[currentAttack].ifheart[i])
-                        {
-                            emoteImage[i].sprite = heartSprite;
-                        }
-                        emoteImage[i].enabled = true;
-                        if (i + 1 < attacks[currentAttack].ifheart.Count)
-                        {
-                            spawnTimer = spawnTimerEnter;
-                        }
-                        else
-                        {
-                            ok = false;
-                        }
-                    }
-                    
-                }
-                //if(emoteImage[0].enabled == false)
-                //{
-                 //   emoteImage[0].enabled = true;
-//}
-                //value -= Time.deltaTime * speed;
-                //Debug.Log(emoteImage[0].gameObject);
-                //emoteImage[0].gameObject.transform.position += new Vector3(1, 0, 0)*Time.deltaTime* chatMoveSpeed;
+                value -= Time.deltaTime * speed;
+                Debug.Log(emoteImage[0].gameObject);
+                emoteImage[0].gameObject.transform.position += new Vector3(1, 0, 0) * Time.deltaTime;
+
                 //Debug.Log(emoteImage[0]);
             }
-            //box.rectTransform.offsetMax = new Vector2(-value, box.rectTransform.offsetMax.y);
+            box.rectTransform.offsetMax = new Vector2(-value, box.rectTransform.offsetMax.y);
         }
 
 
@@ -116,21 +80,19 @@ public class chatBox : MonoBehaviour
 
     public void chatInit()
     {
-        for(int i =0; i<emoteImage.Count-1;i++)
+        for (int i = 0; i < emoteImage.Count - 1; i++)
         {
             int x = Random.Range(0, emotes.Count);
-            emoteImage[i].sprite=emotes[x];
+            emoteImage[i].sprite = emotes[x];
         }
-        //box.rectTransform.offsetMax = new Vector2(-3.8f, box.rectTransform.offsetMax.y);
+        box.rectTransform.offsetMax = new Vector2(-3.8f, box.rectTransform.offsetMax.y);
         //value = init;
         //box.rectTransform.sizeDelta = new Vector3(0, 0, 0);
         box.rectTransform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), 0f);
         box.rectTransform.DOScale(new Vector3(1, 1, 1), 0.4f).OnComplete(() =>
         {
+            //value = init;
             ok = true;
-            i = -1;
-            spawnTimer = 0;
-            currentAttack++;
         });
 
     }
