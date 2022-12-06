@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class HeartBehavior : MonoBehaviour
+public class emoteBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
-    float speed = 5;
+    float speed = 7;
     public int Damage;
     Image myH;
     Vector2 pos;
-    public chatBox chat;
     public bool isheart = false;
+    public int hit = 3;
+    
+    // Start is called before the first frame update
     void Start()
     {
         myH = GetComponent<Image>();
@@ -20,39 +21,38 @@ public class HeartBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player1Update.heartMove)
+        if (myH.enabled)
         {
             this.transform.position += new Vector3(speed * Time.deltaTime, 0);
         }
-
+        else
+        {
+            transform.position = pos;
+            isheart = false;
+        }
         if (isheart)
         {
             Damage = 15;
+            
         }
         else
         {
             Damage = 10;
         }
+        
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("trigger");
         if (collision.name == "Friend")
         {
-
+            hit = 0;
             Player1Update.heartMove = false;
             Player1Update.girlHP -= Damage;
             //gameObject.SetActive(false);
             myH.enabled = false;
             transform.position = pos;
-            StartCoroutine(HitAfter());
+            //StartCoroutine(HitAfter());
         }
-    }
-
-    IEnumerator HitAfter()
-    {
-        yield return new WaitForSeconds(0.9f);
-        chat.disableEmote();
     }
 }

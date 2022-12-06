@@ -26,8 +26,8 @@ public class Player1Update : MonoBehaviour
     public static bool heartMove = false;
     [SerializeField] Image speedLine;
     [SerializeField] Image TxtImage;
-
-
+    [SerializeField] float min;
+    [SerializeField] float max;
     public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
@@ -65,8 +65,20 @@ public class Player1Update : MonoBehaviour
                 if (hit && hit == gameObject.GetComponent<Collider2D>())
                 {
                     animator.SetTrigger("attack1");
-                    Debug.Log("perfect timeL " + chatBox.perfectTime);
-                    if (chatBox.perfectTime>0)
+                    foreach (Image i in chat.emoteImage)
+                    {
+                        if(i.gameObject.transform.position.x >= min && i.gameObject.transform.position.x <= max)
+                        {
+                            i.gameObject.GetComponent<emoteBehavior>().hit--;
+                            if (i.gameObject.GetComponent<emoteBehavior>().hit <= 0)
+                            {
+                                i.enabled = false;
+                                HitSet(2, 15);
+                            }
+                        }
+                    }
+                    //Debug.Log("perfect timeL " + chatBox.perfectTime);
+                    /*if (chatBox.perfectTime>0)
                     {
                         
                             //x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
@@ -122,8 +134,8 @@ public class Player1Update : MonoBehaviour
                                     }
                                 }
                             
-                        }*/
-                    }
+                        }
+                    }*/
                 }
             }
         }
@@ -190,7 +202,7 @@ public class Player1Update : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         speedLine.DOFade(0, 0.2F);
         TxtImage.enabled = false;
-        chat.disableEmote();
+        //chat.disableEmote();
         if (hit == 2)
         {
             DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
@@ -199,14 +211,14 @@ public class Player1Update : MonoBehaviour
     }
     IEnumerator HitPerfAfter()
     {
-        chat.disableEmote();
+        //chat.disableEmote();
         yield return new WaitForSeconds(0.1f);
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.1f).SetEase(Ease.InQuart);  //if perfect hit
     }
     void HitSet(int h, int health)
     {
         Debug.Log("origin size" + Camera.main.orthographicSize);
-        heartanimator.SetTrigger("small");
+        heartanimator.SetTrigger("small");          //animation?
         TxtImage.enabled = true;
         hit = h;
         hitTimer = 0.4f;

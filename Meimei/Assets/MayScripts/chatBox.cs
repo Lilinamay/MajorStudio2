@@ -81,9 +81,15 @@ public class chatBox : MonoBehaviour
                 {
                     i++;
                     {
-                        if (attacks[currentAttack].ifheart[i])
+                        if (attacks[currentAttack].ifheart[i])      //ifis heart
                         {
                             emoteImage[i].sprite = heartSprite;
+                            emoteImage[i].GetComponent<emoteBehavior>().isheart = true;
+                            emoteImage[i].GetComponent<emoteBehavior>().hit = 2;
+                        }
+                        else
+                        {
+                            emoteImage[i].GetComponent<emoteBehavior>().hit = 1;
                         }
                         emoteImage[i].enabled = true;
                         if (i + 1 < attacks[currentAttack].ifheart.Count)
@@ -116,7 +122,7 @@ public class chatBox : MonoBehaviour
 
     public void chatInit()
     {
-        for(int i =0; i<emoteImage.Count-1;i++)
+        for(int i =0; i<emoteImage.Count;i++)
         {
             int x = Random.Range(0, emotes.Count);
             emoteImage[i].sprite=emotes[x];
