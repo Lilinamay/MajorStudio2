@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   isheart: 0
+  hit: -1
 --- !u!1 &152312690
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   isheart: 0
+  hit: -1
 --- !u!1 &386444078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   isheart: 0
+  hit: -1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1054,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1124,6 +1128,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ff317805c53943ba1e2c19588bb57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundPrefab: {fileID: 7982324465853833185, guid: 06e8ebe0ca311054c974bda7d3518f10, type: 3}
+  shoot: {fileID: 0}
+  shootVolume: 1
+  hit: {fileID: 0}
+  hitVolume: 1
+  arch: {fileID: 0}
+  archVolume: 1
+  dash: {fileID: 0}
+  dashVolume: 1
+  jump: {fileID: 0}
+  jumpVolume: 1
+  text: {fileID: 0}
+  textVolume: 1
+  getsnow: {fileID: 0}
+  getsnowVolume: 1
+  horse: {fileID: 0}
+  horseVolume: 1
 --- !u!1 &533133628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   isheart: 0
+  hit: -1
 --- !u!1 &1043000738
 GameObject:
   m_ObjectHideFlags: 0
