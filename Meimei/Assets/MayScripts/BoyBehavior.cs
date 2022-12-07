@@ -30,7 +30,7 @@ public class BoyBehavior : MonoBehaviour
         {
             if (Timer <= 0 )
             {
-                Timer = 10f;     //time until next attack
+                Timer = 5f;     //time until next attack
                 //boy attack animation
                 //heartAttack();
                 //BoxAttack();
@@ -54,7 +54,7 @@ public class BoyBehavior : MonoBehaviour
             else if(Timer>0)
             {
                 Timer -= Time.deltaTime;
-                if (Timer <= 4)
+                if (Timer <= 1)
                 {
                     if (chatObject.activeSelf == true)
                     {

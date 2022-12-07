@@ -171,7 +171,7 @@ public class Player1Update : MonoBehaviour
                     StartCoroutine(HitPerfAfter());
                     TxtImage.enabled = true;
                     rank.text = "perfect";
-                    Time.timeScale = 0.4f;
+                    //Time.timeScale = 0.4f;
 
                 }
                 else if (hit == 1)
@@ -205,7 +205,7 @@ public class Player1Update : MonoBehaviour
         //chat.disableEmote();
         if (hit == 2)
         {
-            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
+            //DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
         }
         Camera.main.DOOrthoSize(5f, 0.2f).SetEase(Ease.InQuart);
     }
@@ -213,7 +213,7 @@ public class Player1Update : MonoBehaviour
     {
         //chat.disableEmote();
         yield return new WaitForSeconds(0.1f);
-        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.1f).SetEase(Ease.InQuart);  //if perfect hit
+        //DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.1f).SetEase(Ease.InQuart);  //if perfect hit
     }
     void HitSet(int h, int health)
     {

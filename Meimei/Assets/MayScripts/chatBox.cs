@@ -24,7 +24,7 @@ public class chatBox : MonoBehaviour
     bool ok = false;
     int i = -1;
     float spawnTimer = 0;
-    public float spawnTimerEnter = 1f;
+    public float spawnTimerEnter = 0.5f;
     [SerializeField] Sprite heartSprite;
     int currentAttack = -1;
     // Start is called before the first frame update
