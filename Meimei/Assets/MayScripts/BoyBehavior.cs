@@ -51,9 +51,16 @@ public class BoyBehavior : MonoBehaviour
                 
                 Debug.Log("ENABLE CHATBOX");
             }
-            else
+            else if(Timer>0)
             {
                 Timer -= Time.deltaTime;
+                if (Timer <= 4)
+                {
+                    if (chatObject.activeSelf == true)
+                    {
+                        chatObject.SetActive(false);
+                    }
+                }
             }
         }
     }

@@ -76,6 +76,7 @@ public class chatBox : MonoBehaviour
                 if (spawnTimer > 0)
                 {
                     spawnTimer -= Time.deltaTime;
+                    
                 }
                 if (spawnTimer <= 0)
                 {
