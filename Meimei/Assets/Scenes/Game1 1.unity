@@ -1141,22 +1141,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundPrefab: {fileID: 7982324465853833185, guid: 06e8ebe0ca311054c974bda7d3518f10, type: 3}
-  becomeStrong: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
-  strongVolume: 1
-  boyEmote: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  becomeStrong: {fileID: 8300000, guid: 967fc9e2a4de3eb408870177aeddb873, type: 3}
+  strongVolume: 0.595
+  boyEmote: {fileID: 0}
   emoteVolume: 1
-  boyHurt: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  boyHurt: {fileID: 8300000, guid: e16f5ff06beed45489447932c8e5fad6, type: 3}
   boyHurtVolume: 1
-  punchEmpty: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
-  punchEmptyVolume: 1
-  punch: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  punch: {fileID: 8300000, guid: a5b13807e8c0fd34fa00a76c14f7f375, type: 3}
   punchVolume: 1
-  girlHurt: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  girlHurt: {fileID: 8300000, guid: af3a316e33502ec4389a7a02ea08a802, type: 3}
   girlHurtVolume: 1
-  getsnow: {fileID: 0}
-  getsnowVolume: 1
-  horse: {fileID: 0}
-  horseVolume: 1
 --- !u!1 &533133628
 GameObject:
   m_ObjectHideFlags: 0
