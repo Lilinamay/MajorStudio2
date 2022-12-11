@@ -1141,18 +1141,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundPrefab: {fileID: 7982324465853833185, guid: 06e8ebe0ca311054c974bda7d3518f10, type: 3}
-  shoot: {fileID: 0}
-  shootVolume: 1
-  hit: {fileID: 0}
-  hitVolume: 1
-  arch: {fileID: 0}
-  archVolume: 1
-  dash: {fileID: 0}
-  dashVolume: 1
-  jump: {fileID: 0}
-  jumpVolume: 1
-  text: {fileID: 0}
-  textVolume: 1
+  becomeStrong: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  strongVolume: 1
+  boyEmote: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  emoteVolume: 1
+  boyHurt: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  boyHurtVolume: 1
+  punchEmpty: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  punchEmptyVolume: 1
+  punch: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  punchVolume: 1
+  girlHurt: {fileID: 8300000, guid: 245ec25fb279faa4a9d9b9ca28b1d520, type: 3}
+  girlHurtVolume: 1
   getsnow: {fileID: 0}
   getsnowVolume: 1
   horse: {fileID: 0}

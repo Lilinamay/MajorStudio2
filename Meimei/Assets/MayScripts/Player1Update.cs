@@ -196,18 +196,19 @@ public class Player1Update : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);//2.5f
         animator.SetTrigger("turn");
+        Audiomanager.Instance.PlaySound(Audiomanager.Instance.becomeStrong, Audiomanager.Instance.strongVolume);
     }
     IEnumerator HitAfter()
     {
-        yield return new WaitForSeconds(0.1f);
-        speedLine.DOFade(0, 0.2F);
+        yield return new WaitForSeconds(0.03f);
+        speedLine.DOFade(0, 0.1F);
         TxtImage.enabled = false;
         //chat.disableEmote();
         if (hit == 2)
         {
             //DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetEase(Ease.InQuart);  //if perfect hit
         }
-        Camera.main.DOOrthoSize(5f, 0.2f).SetEase(Ease.InQuart);
+        Camera.main.DOOrthoSize(5f, 0.05f).SetEase(Ease.InQuart);
     }
     IEnumerator HitPerfAfter()
     {
@@ -218,12 +219,13 @@ public class Player1Update : MonoBehaviour
     void HitSet(int h, int health)
     {
         Debug.Log("origin size" + Camera.main.orthographicSize);
+        Audiomanager.Instance.PlaySound(Audiomanager.Instance.boyHurt, Audiomanager.Instance.boyHurtVolume);
         heartanimator.SetTrigger("small");          //animation?
         TxtImage.enabled = true;
         hit = h;
         hitTimer = 0.4f;
         hitHealth = health;
-        Camera.main.DOOrthoSize(4.8f, 0.2f).SetEase(Ease.InQuart);
+        Camera.main.DOOrthoSize(4.9f, 0.05f).SetEase(Ease.InQuart);
         speedLine.DOFade(1, 0.2F);
         //Debug.Log("after size" + Camera.main.orthographicSize);
     }

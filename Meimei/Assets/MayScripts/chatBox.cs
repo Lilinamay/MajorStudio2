@@ -93,6 +93,7 @@ public class chatBox : MonoBehaviour
                             emoteImage[i].GetComponent<emoteBehavior>().hit = 1;
                         }
                         emoteImage[i].enabled = true;
+                        Audiomanager.Instance.PlaySound(Audiomanager.Instance.boyEmote, Audiomanager.Instance.emoteVolume);
                         if (i + 1 < attacks[currentAttack].ifheart.Count)
                         {
                             spawnTimer = spawnTimerEnter;

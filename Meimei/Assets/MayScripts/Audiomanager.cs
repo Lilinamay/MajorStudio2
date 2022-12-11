@@ -7,24 +7,19 @@ public class Audiomanager : MonoBehaviour
     public static Audiomanager Instance;
     public GameObject SoundPrefab;
     //play following sound in the sound prefab
-    public AudioClip shoot;
-    [Range(0f, 1f)] public float shootVolume = 1.0f;
-    public AudioClip hit;   //snowball hit surfaces
-    [Range(0f, 1f)] public float hitVolume = 1.0f;
+    public AudioClip becomeStrong;
+    [Range(0f, 1f)] public float strongVolume = 1.0f;
+    public AudioClip boyEmote;   //snowball hit surfaces
+    [Range(0f, 1f)] public float emoteVolume = 1.0f;
     [Space(10)]
 
-    public AudioClip arch;  //when player enter arch
-    [Range(0f, 1f)] public float archVolume = 1.0f;
-    public AudioClip dash;
-    [Range(0f, 1f)] public float dashVolume = 1.0f;
-    public AudioClip jump;
-    [Range(0f, 1f)] public float jumpVolume = 1.0f;
-    public AudioClip text;  //during dialogue
-    [Range(0f, 1f)] public float textVolume = 1.0f;
-    public AudioClip getsnow;
-    [Range(0f, 1f)] public float getsnowVolume = 1.0f;
-    public AudioClip horse;
-    [Range(0f, 1f)] public float horseVolume = 1.0f;
+    public AudioClip boyHurt;  //when player enter arch
+    [Range(0f, 1f)] public float boyHurtVolume = 1.0f;
+    public AudioClip punch;
+    [Range(0f, 1f)] public float punchVolume = 1.0f;
+    public AudioClip girlHurt;  //during dialogue
+    [Range(0f, 1f)] public float girlHurtVolume = 1.0f;
+
 
 
     // Start is called before the first frame update

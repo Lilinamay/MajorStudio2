@@ -49,6 +49,7 @@ public class emoteBehavior : MonoBehaviour
             hit = 0;
             Player1Update.heartMove = false;
             Player1Update.girlHP -= Damage;
+            Audiomanager.Instance.PlaySound(Audiomanager.Instance.girlHurt, Audiomanager.Instance.girlHurtVolume);
             //gameObject.SetActive(false);
             myH.enabled = false;
             transform.position = pos;
