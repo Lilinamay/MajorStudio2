@@ -1872,6 +1872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   chat: {fileID: 533133632}
+  isheart: 0
 --- !u!95 &1252544347
 Animator:
   serializedVersion: 4
@@ -2522,8 +2523,8 @@ Transform:
   m_GameObject: {fileID: 1561493907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.46, y: -2, z: 0}
-  m_LocalScale: {x: 0.17, y: 0.17, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 5.882353}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -2545,7 +2546,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.88, y: 43.223495}
+    oldSize: {x: 4.6466665, y: 7.203916}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2983,6 +2984,8 @@ MonoBehaviour:
   chat: {fileID: 533133632}
   speedLine: {fileID: 1523068901}
   TxtImage: {fileID: 2070796533}
+  min: 0
+  max: 0
 --- !u!1 &1891997679
 GameObject:
   m_ObjectHideFlags: 0

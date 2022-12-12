@@ -10,7 +10,10 @@ public class PlayerWalk : MonoBehaviour
     bool down = false;
     public static bool camTrigger = false;
     private Animator animator;
+    public Animator Ganimator;
     public Tweener currentTween;
+    bool boyed = false;
+    public GameObject boy;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,34 +23,40 @@ public class PlayerWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position -= new Vector3(speed * Time.deltaTime, 0);
-        if (Input.touchCount > 0)
+        if (!boyed)
         {
-            t = Input.GetTouch(0);
-            if (t.phase == TouchPhase.Began)
-            {
-                if (currentTween != null)
-                {
-                    currentTween.Kill();
-                }
-                if (Camera.main.ScreenToWorldPoint(t.position).x <= this.transform.position.x)
-                {
-                    //start walk animation
-                    animator.SetBool("walk", true);
-                    speed = 2;
+            this.transform.position -= new Vector3(speed * Time.deltaTime, 0);
 
-                }
-            }
-            else if (t.phase == TouchPhase.Ended)
+            if (Input.touchCount > 0)
             {
-                down = true;
-                currentTween=DOTween.To(() => speed, x => speed = x, 0, 1).SetEase(Ease.InQuart).OnComplete(() =>
+                t = Input.GetTouch(0);
+                if (t.phase == TouchPhase.Began)
                 {
+                    if (currentTween != null)
+                    {
+                        currentTween.Kill();
+                    }
+                    if (Camera.main.ScreenToWorldPoint(t.position).x <= this.transform.position.x)
+                    {
+                        //start walk animation
+                        animator.SetBool("walk", true);
+                        Ganimator.SetBool("walk", true);
+                        speed = 2;
+
+                    }
+                }
+                else if (t.phase == TouchPhase.Ended)
+                {
+                    down = true;
+                    currentTween = DOTween.To(() => speed, x => speed = x, 0, 1).SetEase(Ease.InQuart).OnComplete(() =>
+                      {
                     //stop animation
                     animator.SetBool("walk", false);
-                    Debug.Log("finished");
-                    currentTween = null;
-                });
+                          Ganimator.SetBool("walk", false);
+                          Debug.Log("finished");
+                          currentTween = null;
+                      });
+                }
             }
         }
 
@@ -71,5 +80,19 @@ public class PlayerWalk : MonoBehaviour
             Debug.Log("triggered");
             camTrigger = true;
         }
+        if(collision.name == "boyTrigger")
+        {
+            Debug.Log("triggered");
+            boyed = true;
+            animator.SetBool("walk", false);
+            Ganimator.SetBool("walk", false);
+            
+        }
+    }
+    
+    IEnumerator Boys()
+    {
+        yield return new WaitForSeconds(0.1f);
+        boy.transform.DOJump(new Vector3(-14.4F, -1.17F, 0), 0.5F, 1, 0.5F);
     }
 }
