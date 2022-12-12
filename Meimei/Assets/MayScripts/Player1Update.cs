@@ -29,6 +29,8 @@ public class Player1Update : MonoBehaviour
     [SerializeField] float min;
     [SerializeField] float max;
     public static bool game = true;
+    bool sta = false;
+    [SerializeField] Sprite emoteExplode;
     public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
@@ -36,7 +38,7 @@ public class Player1Update : MonoBehaviour
         rank.text = "";
         animator = GetComponent<Animator>();
         //play power up animation from start or in update if(cgTimer = 3....etc) play animation
-        StartCoroutine(turnS());
+        //StartCoroutine(turnS());
     }
 
     // Update is called once per frame
@@ -49,6 +51,12 @@ public class Player1Update : MonoBehaviour
         if (cgTimer >= 0)
         {
             cgTimer -= Time.deltaTime;
+        }
+        if(cgTimer<=2&& !sta)
+        {
+            animator.SetTrigger("turn");
+            Audiomanager.Instance.PlaySound(Audiomanager.Instance.becomeStrong, Audiomanager.Instance.strongVolume);
+            sta = true;
         }
         if (chatBox.perfectTime > 0.5f)
         {
@@ -76,11 +84,17 @@ public class Player1Update : MonoBehaviour
                             {
                                 if (!i.gameObject.GetComponent<emoteBehavior>().isheart)
                                 {
-                                    i.enabled = false;
+                                    i.sprite = emoteExplode;
+                                    //i.enabled = false;
+                                    StartCoroutine(disableEmote(i));
                                     HitSet(2, 3);
+                                    
                                 }
                                 //i.gameObject.GetComponent<Animator>().SetTrigger("small");
-                                HitSet(2, 6);
+                                else
+                                {
+                                    HitSet(2, 6);
+                                }
                             }
                             if(i.gameObject.GetComponent<emoteBehavior>().hit <= 1)
                             {
@@ -256,6 +270,13 @@ public class Player1Update : MonoBehaviour
             //Play lose  state Animation
         }
     }
+    IEnumerator disableEmote(Image i)
+    {
+        yield return new WaitForSeconds(0.1f);
+        i.enabled = false;
+    }
+
+
 
 }
 
