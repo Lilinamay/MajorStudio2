@@ -18,6 +18,7 @@ public class cutsceneManager : MonoBehaviour
     public Tweener currentTween5;
     public Tweener currentTween6;
     public Image translate;
+    public AudioSource BGM;
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +118,7 @@ public class cutsceneManager : MonoBehaviour
                         currentTween6.Goto(0.5f);    //GO to complete time
                         break;
                     case 11:
+                        BGM.DOFade(0, 0.7f);
                         translate.DOFade(1, 0.7f).OnComplete(() =>
                         {
                             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;

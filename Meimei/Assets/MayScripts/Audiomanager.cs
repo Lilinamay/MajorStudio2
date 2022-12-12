@@ -19,6 +19,12 @@ public class Audiomanager : MonoBehaviour
     [Range(0f, 1f)] public float punchVolume = 1.0f;
     public AudioClip girlHurt;  //during dialogue
     [Range(0f, 1f)] public float girlHurtVolume = 1.0f;
+    public AudioClip win;  //during dialogue
+    [Range(0f, 1f)] public float winVolume = 1.0f;
+    public AudioClip lose;  //during dialogue
+    [Range(0f, 1f)] public float loseVolume = 1.0f;
+    public AudioClip kiss;  //during dialogue
+    [Range(0f, 1f)] public float kissVolume = 1.0f;
 
 
 

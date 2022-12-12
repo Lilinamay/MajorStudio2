@@ -15,7 +15,8 @@ public class TitleScene : MonoBehaviour
     public Tweener currentTween3;
     public Tweener currentTween4;
     float Timer = 0;
-    int i = 0;
+    public int i = 0;
+    public AudioSource BGM;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class TitleScene : MonoBehaviour
     {
         if(Timer <= 0)
         {
-            if (i < 5)
+            if (i < 4)
             {
                 i++;
             }
@@ -41,7 +42,10 @@ public class TitleScene : MonoBehaviour
         {
             Timer -= Time.deltaTime;
         }
-        imgs[5].sprite = anims[i];
+        if (i < 5)
+        {
+            imgs[5].sprite = anims[i];
+        }
         if (Input.touchCount > 0)
         {
             t = Input.GetTouch(0);
@@ -99,6 +103,7 @@ public class TitleScene : MonoBehaviour
                         imgs[1].rectTransform.DOLocalMoveY(-125, 0.5f);
                         imgs[2].rectTransform.DOLocalMoveY(-125, 0.5f);
                         imgs[4].rectTransform.DOLocalMoveY(91, 0.5f);
+                        BGM.DOFade(0, 0.7f);
                         currentTween4 = imgs[3].DOFade(1, 0.7f).OnComplete(() =>
                         {
                             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;

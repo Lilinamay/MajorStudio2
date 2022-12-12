@@ -248,6 +248,7 @@ MonoBehaviour:
   - {fileID: 1191380463, guid: 9067fc2d00c570a4ea8bd17a49103061, type: 3}
   - {fileID: -1172458692, guid: 3701d349837f7634898a1594a463de75, type: 3}
   index: -1
+  girlanimator: {fileID: 1561493912}
 --- !u!1 &152312690
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -228.6, y: -76.7}
+  m_AnchoredPosition: {x: -233.9001, y: -76.7}
   m_SizeDelta: {x: 450, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &179312244
@@ -577,7 +578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.7, y: -77.1}
+  m_AnchoredPosition: {x: 219.9, y: -77.09999}
   m_SizeDelta: {x: 450, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &220423502
@@ -743,6 +744,7 @@ MonoBehaviour:
   - {fileID: 1191380463, guid: 9067fc2d00c570a4ea8bd17a49103061, type: 3}
   - {fileID: -1172458692, guid: 3701d349837f7634898a1594a463de75, type: 3}
   index: -1
+  girlanimator: {fileID: 1561493912}
 --- !u!1 &386444078
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,7 +821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 218.20001, y: -74.7}
+  m_AnchoredPosition: {x: 221.4, y: -74.7}
   m_SizeDelta: {x: 228, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397553021
@@ -1061,6 +1063,7 @@ MonoBehaviour:
   - {fileID: 1191380463, guid: 9067fc2d00c570a4ea8bd17a49103061, type: 3}
   - {fileID: -1172458692, guid: 3701d349837f7634898a1594a463de75, type: 3}
   index: -1
+  girlanimator: {fileID: 1561493912}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1172,12 @@ MonoBehaviour:
   punchVolume: 1
   girlHurt: {fileID: 8300000, guid: af3a316e33502ec4389a7a02ea08a802, type: 3}
   girlHurtVolume: 0.919
+  win: {fileID: 8300000, guid: 65605c93247978740bbffa000db577ad, type: 3}
+  winVolume: 1
+  lose: {fileID: 8300000, guid: aa2b4b21b853b384898d3523aefd40b9, type: 3}
+  loseVolume: 1
+  kiss: {fileID: 8300000, guid: b8ed3ade993786a44a1936b43fb879ab, type: 3}
+  kissVolume: 1
 --- !u!1 &533133628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,6 +1721,7 @@ MonoBehaviour:
   - {fileID: 1191380463, guid: 9067fc2d00c570a4ea8bd17a49103061, type: 3}
   - {fileID: -1172458692, guid: 3701d349837f7634898a1594a463de75, type: 3}
   index: -1
+  girlanimator: {fileID: 1561493912}
 --- !u!1 &1043000738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,7 +1784,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 884dc32bf4783f34f86b4184e5dbd1ae, type: 3}
-  m_Color: {r: 0.6556604, g: 0.88591415, b: 1, a: 1}
+  m_Color: {r: 0.8160377, g: 0.93937606, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -2625,7 +2635,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72037fb17dc7e734cb2520a648e532b8, type: 3}
-  m_Color: {r: 0.99655855, g: 0.8537736, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.8726415, b: 0.9909005, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2917,8 +2927,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.42352942}
+  m_Sprite: {fileID: 21300000, guid: 32d8aacb336c0cc4fb528cd49e56d4e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2936,8 +2946,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744773031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.63, y: 1.3861, z: 0}
-  m_LocalScale: {x: 0.5976381, y: 8.023426, z: 1}
+  m_LocalPosition: {x: 0.84, y: 0.32, z: 0}
+  m_LocalScale: {x: 0.82, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3186,6 +3196,8 @@ MonoBehaviour:
   girl: {fileID: 1924227275}
   rank: {fileID: 1891997681}
   heartanimator: {fileID: 1252544347}
+  boyanimator: {fileID: 1043000742}
+  Girl: {fileID: 1561493907}
   chat: {fileID: 533133632}
   speedLine: {fileID: 1523068901}
   TxtImage: {fileID: 2070796533}
@@ -3362,7 +3374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -230.39992, y: -74}
+  m_AnchoredPosition: {x: -235.70001, y: -74}
   m_SizeDelta: {x: 228, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912483629
@@ -3438,7 +3450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -230.39992, y: -73.999985}
+  m_AnchoredPosition: {x: -235.7, y: -73.999985}
   m_SizeDelta: {x: 228, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1924227275
@@ -3559,7 +3571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 218.30003, y: -74.39999}
+  m_AnchoredPosition: {x: 221.50003, y: -74.39998}
   m_SizeDelta: {x: 228, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2048319715

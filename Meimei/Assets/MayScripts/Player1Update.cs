@@ -20,6 +20,8 @@ public class Player1Update : MonoBehaviour
     float ct = 0;
     Animator animator;
     [SerializeField] Animator heartanimator;
+    [SerializeField] Animator boyanimator;
+    [SerializeField] GameObject Girl;
     int hit = 0;
     int hitHealth = 0;
     [SerializeField] chatBox chat;
@@ -32,6 +34,7 @@ public class Player1Update : MonoBehaviour
     bool sta = false;
     [SerializeField] Sprite emoteExplode;
     public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
+    bool final = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -84,10 +87,11 @@ public class Player1Update : MonoBehaviour
                             {
                                 if (!i.gameObject.GetComponent<emoteBehavior>().isheart)
                                 {
-                                    i.sprite = emoteExplode;
+                                    //i.sprite = emoteExplode;
                                     //i.enabled = false;
-                                    StartCoroutine(disableEmote(i));
                                     HitSet(2, 3);
+                                    StartCoroutine(changeEmote(i));
+                                    
                                     
                                 }
                                 //i.gameObject.GetComponent<Animator>().SetTrigger("small");
@@ -244,6 +248,7 @@ public class Player1Update : MonoBehaviour
     void HitSet(int h, int health)
     {
         Debug.Log("origin size" + Camera.main.orthographicSize);
+        boyanimator.SetTrigger("hurt");
         Audiomanager.Instance.PlaySound(Audiomanager.Instance.boyHurt, Audiomanager.Instance.boyHurtVolume);
         heartanimator.SetTrigger("small");          //animation?
         TxtImage.enabled = true;
@@ -257,23 +262,37 @@ public class Player1Update : MonoBehaviour
 
     void Winlose()
     {
-        if (boyHP <= 0)
+        if (boyHP <= 0 && !final)
         {
             Debug.Log("Win");
             game = false;
+            Girl.SetActive(false);
+
+            animator.SetTrigger("win");
+            final = true;
+            Audiomanager.Instance.PlaySound(Audiomanager.Instance.win, Audiomanager.Instance.winVolume);
             //Play win state Animation
         }
-        else if (girlHP <= 0)
+        else if (girlHP <= 0 && !final)
         {
             Debug.Log("Lose");
+            animator.SetTrigger("lose");
             game = false;
+            final = true;
+            Audiomanager.Instance.PlaySound(Audiomanager.Instance.lose, Audiomanager.Instance.loseVolume);
             //Play lose  state Animation
         }
     }
     IEnumerator disableEmote(Image i)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         i.enabled = false;
+    }
+    IEnumerator changeEmote(Image i)
+    {
+        yield return new WaitForSeconds(0.05f);
+        i.sprite = emoteExplode;
+        StartCoroutine(disableEmote(i));
     }
 
 

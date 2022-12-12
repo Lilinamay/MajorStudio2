@@ -17,6 +17,7 @@ public class PlayerWalk : MonoBehaviour
     bool boyed = false;
     public GameObject boy;
     public Image translate;
+    public AudioSource BGM;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,9 +97,11 @@ public class PlayerWalk : MonoBehaviour
     IEnumerator Boys()
     {
         yield return new WaitForSeconds(0.1f);
-        boy.transform.DOJump(new Vector3(-14.4F, -1.17F, 0), 0.5F, 1, 0.5F).OnComplete(() =>
+        boy.transform.DOJump(new Vector3(-12.8F, -1.17F, 0), 0.5F, 1, 0.5F).OnComplete(() =>
         {
             boy.GetComponent<Animator>().SetTrigger("attack2");
+            animator.SetTrigger("dislike");
+            //Audiomanager.Instance.PlaySound(Audiomanager.Instance.kiss, Audiomanager.Instance.kissVolume);
             StartCoroutine(trans());
 
         });
@@ -108,6 +111,7 @@ public class PlayerWalk : MonoBehaviour
     IEnumerator trans()
     {
         yield return new WaitForSeconds(1.5f);
+        BGM.DOFade(0, 0.7f);
         translate.DOFade(1, 0.7f).OnComplete(() =>
         {
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;

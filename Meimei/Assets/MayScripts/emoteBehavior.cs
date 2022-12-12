@@ -14,7 +14,7 @@ public class emoteBehavior : MonoBehaviour
     public int index = 0;
     float waitTimer = 3;
     bool play = false;
-    
+    [SerializeField] Animator girlanimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +67,7 @@ public class emoteBehavior : MonoBehaviour
             //Debug.Log("INDEX" + index);
             if (play)
             {
-                waitTimer = 0.1f;
+                waitTimer = 0.05f;
                 play = false;
             }
             if (waitTimer > 0)
@@ -94,6 +94,7 @@ public class emoteBehavior : MonoBehaviour
         if (collision.name == "Friend")
         {
             hit = 0;
+            girlanimator.SetTrigger("hurt");
             Player1Update.heartMove = false;
             Player1Update.girlHP -= Damage;
             Audiomanager.Instance.PlaySound(Audiomanager.Instance.girlHurt, Audiomanager.Instance.girlHurtVolume);
