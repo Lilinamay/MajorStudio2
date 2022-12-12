@@ -9,11 +9,13 @@ public class TitleScene : MonoBehaviour
     private Touch t;
     public int s = 1;
     public List<Image> imgs;
-    public Sprite broken;
+    public List<Sprite> anims;
     public Tweener currentTween;
     public Tweener currentTween2;
     public Tweener currentTween3;
     public Tweener currentTween4;
+    float Timer = 0;
+    int i = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,23 @@ public class TitleScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Timer <= 0)
+        {
+            if (i < 5)
+            {
+                i++;
+            }
+            else
+            {
+                i = 0;
+            }
+            Timer = 0.2f;
+        }
+        else
+        {
+            Timer -= Time.deltaTime;
+        }
+        imgs[5].sprite = anims[i];
         if (Input.touchCount > 0)
         {
             t = Input.GetTouch(0);

@@ -303,7 +303,13 @@ MonoBehaviour:
   - {fileID: 1957041467}
   - {fileID: 6282936}
   - {fileID: 1909946071}
-  broken: {fileID: 0}
+  - {fileID: 1375523202}
+  anims:
+  - {fileID: 21300000, guid: fa92edae595bf1c4bbb79bdf7b82bb14, type: 3}
+  - {fileID: 21300000, guid: df4b4372cd9b8194286f2e0b318f9b8a, type: 3}
+  - {fileID: 21300000, guid: 4f3d4e99c1c349440b6290acdaedb991, type: 3}
+  - {fileID: 21300000, guid: 87df82c1e604ef04194c9bbaad64024d, type: 3}
+  - {fileID: 21300000, guid: d3cafa9b273d5cc44916bf696191e9dc, type: 3}
 --- !u!1 &505611433
 GameObject:
   m_ObjectHideFlags: 0
