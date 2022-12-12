@@ -28,6 +28,7 @@ public class Player1Update : MonoBehaviour
     [SerializeField] Image TxtImage;
     [SerializeField] float min;
     [SerializeField] float max;
+    public static bool game = true;
     public static float cgTimer = 3; //5the amount of time for cutscene before accepting player input
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class Player1Update : MonoBehaviour
     {
         HPbar();
         HitTimer();
+        Winlose();
         //x = this.transform.position.x - BoyBehavior.currentHeart.transform.position.x;
         if (cgTimer >= 0)
         {
@@ -53,7 +55,7 @@ public class Player1Update : MonoBehaviour
             heartMove = true;
             chatBox.heart = false;
         }
-        if (Input.touchCount > 0 && cgTimer < 0)
+        if (Input.touchCount > 0 && cgTimer < 0 &&game)
         {
             t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
@@ -72,8 +74,17 @@ public class Player1Update : MonoBehaviour
                             i.gameObject.GetComponent<emoteBehavior>().hit--;
                             if (i.gameObject.GetComponent<emoteBehavior>().hit <= 0)
                             {
-                                i.enabled = false;
-                                HitSet(2, 15);
+                                if (!i.gameObject.GetComponent<emoteBehavior>().isheart)
+                                {
+                                    i.enabled = false;
+                                    HitSet(2, 3);
+                                }
+                                //i.gameObject.GetComponent<Animator>().SetTrigger("small");
+                                HitSet(2, 6);
+                            }
+                            if(i.gameObject.GetComponent<emoteBehavior>().hit <= 1)
+                            {
+                                Audiomanager.Instance.PlaySound(Audiomanager.Instance.boyHurt, Audiomanager.Instance.boyHurtVolume);
                             }
                         }
                     }
@@ -228,6 +239,22 @@ public class Player1Update : MonoBehaviour
         Camera.main.DOOrthoSize(4.9f, 0.05f).SetEase(Ease.InQuart);
         speedLine.DOFade(1, 0.2F);
         //Debug.Log("after size" + Camera.main.orthographicSize);
+    }
+
+    void Winlose()
+    {
+        if (boyHP <= 0)
+        {
+            Debug.Log("Win");
+            game = false;
+            //Play win state Animation
+        }
+        else if (girlHP <= 0)
+        {
+            Debug.Log("Lose");
+            game = false;
+            //Play lose  state Animation
+        }
     }
 
 }

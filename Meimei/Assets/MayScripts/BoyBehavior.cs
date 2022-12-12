@@ -26,39 +26,42 @@ public class BoyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player1Update.cgTimer <= 0)
+        if (Player1Update.game)
         {
-            if (Timer <= 0 )
+            if (Player1Update.cgTimer <= 0)
             {
-                Timer = 5f;     //time until next attack
-                //boy attack animation
-                //heartAttack();
-                //BoxAttack();
-                int x = Random.Range(0, 2);
-                if (x == 0)
+                if (Timer <= 0)
                 {
-                    animator.SetTrigger("attack");
-                }
-                if (x == 1)
-                {
-                    animator.SetTrigger("attack2");
-                }
-                
-
-                chatObject.SetActive(true);
-                chatObject.GetComponent<chatBox>().chatInit();
-                //attack = true;
-                
-                Debug.Log("ENABLE CHATBOX");
-            }
-            else if(Timer>0)
-            {
-                Timer -= Time.deltaTime;
-                if (Timer <= 1)
-                {
-                    if (chatObject.activeSelf == true)
+                    Timer = 5f;     //time until next attack
+                                    //boy attack animation
+                                    //heartAttack();
+                                    //BoxAttack();
+                    int x = Random.Range(0, 2);
+                    if (x == 0)
                     {
-                        chatObject.SetActive(false);
+                        animator.SetTrigger("attack");
+                    }
+                    if (x == 1)
+                    {
+                        animator.SetTrigger("attack2");
+                    }
+
+
+                    chatObject.SetActive(true);
+                    chatObject.GetComponent<chatBox>().chatInit();
+                    //attack = true;
+
+                    Debug.Log("ENABLE CHATBOX");
+                }
+                else if (Timer > 0)
+                {
+                    Timer -= Time.deltaTime;
+                    if (Timer <= 1)
+                    {
+                        if (chatObject.activeSelf == true)
+                        {
+                            chatObject.SetActive(false);
+                        }
                     }
                 }
             }

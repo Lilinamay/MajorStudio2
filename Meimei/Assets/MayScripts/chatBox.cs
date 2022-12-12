@@ -69,6 +69,7 @@ public class chatBox : MonoBehaviour
         calculateScore();
         */
         //if (value >= 3.4f)
+        if(Player1Update.game)
         {
             
             if (ok&& currentAttack<attacks.Count)
@@ -85,12 +86,14 @@ public class chatBox : MonoBehaviour
                         if (attacks[currentAttack].ifheart[i])      //ifis heart
                         {
                             emoteImage[i].sprite = heartSprite;
+                            emoteImage[i].GetComponent<emoteBehavior>().index = 0;
                             emoteImage[i].GetComponent<emoteBehavior>().isheart = true;
                             emoteImage[i].GetComponent<emoteBehavior>().hit = 2;
                         }
                         else
                         {
                             emoteImage[i].GetComponent<emoteBehavior>().hit = 1;
+                            emoteImage[i].GetComponent<emoteBehavior>().isheart = false;
                         }
                         emoteImage[i].enabled = true;
                         Audiomanager.Instance.PlaySound(Audiomanager.Instance.boyEmote, Audiomanager.Instance.emoteVolume);
@@ -115,6 +118,10 @@ public class chatBox : MonoBehaviour
                 //Debug.Log(emoteImage[0]);
             }
             //box.rectTransform.offsetMax = new Vector2(-value, box.rectTransform.offsetMax.y);
+        }
+        else
+        {
+            disableEmote();
         }
 
 

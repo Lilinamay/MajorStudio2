@@ -10,6 +10,10 @@ public class emoteBehavior : MonoBehaviour
     Vector2 pos;
     public bool isheart = false;
     public int hit = 3;
+    public Sprite[] HeartBREAK;
+    public int index = 0;
+    float waitTimer = 3;
+    bool play = false;
     
     // Start is called before the first frame update
     void Start()
@@ -32,14 +36,57 @@ public class emoteBehavior : MonoBehaviour
         }
         if (isheart)
         {
-            Damage = 15;
+            Damage = 10;
             
         }
         else
         {
-            Damage = 10;
+            Damage = 5;
         }
-        
+        if(hit ==1 && index<2 &&isheart)
+        {
+            myH.sprite = HeartBREAK[index];
+            //Debug.Log("INDEX" + index);
+            if (!play)
+            {
+                waitTimer = 0.1f;
+                play = true;
+            }
+            if (waitTimer > 0)
+            {
+                waitTimer -= Time.deltaTime;
+            }
+            else
+            {
+                index++;
+            }
+        }
+        if (hit == 0 && index < 4 && isheart)
+        {
+            myH.sprite = HeartBREAK[index];
+            //Debug.Log("INDEX" + index);
+            if (play)
+            {
+                waitTimer = 0.1f;
+                play = false;
+            }
+            if (waitTimer > 0)
+            {
+                waitTimer -= Time.deltaTime;
+            }
+            else
+            {
+                index++;
+            }
+        }
+        if (hit == 0 && index >= 4 && isheart)
+        {
+            myH.enabled = false;
+            transform.position = pos;
+            play = false;
+        }
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -56,4 +103,5 @@ public class emoteBehavior : MonoBehaviour
             //StartCoroutine(HitAfter());
         }
     }
+
 }
