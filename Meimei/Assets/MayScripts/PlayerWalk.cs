@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerWalk : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerWalk : MonoBehaviour
     public Tweener currentTween;
     bool boyed = false;
     public GameObject boy;
+    public Image translate;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,10 +108,14 @@ public class PlayerWalk : MonoBehaviour
     IEnumerator trans()
     {
         yield return new WaitForSeconds(1.5f);
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+        translate.DOFade(1, 0.7f).OnComplete(() =>
         {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+
+        });
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class cutsceneManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class cutsceneManager : MonoBehaviour
     public Tweener currentTween4;
     public Tweener currentTween5;
     public Tweener currentTween6;
+    public Image translate;
     // Start is called before the first frame update
     void Start()
     {
@@ -115,11 +117,15 @@ public class cutsceneManager : MonoBehaviour
                         currentTween6.Goto(0.5f);    //GO to complete time
                         break;
                     case 11:
-                        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-                        if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+                        translate.DOFade(1, 0.7f).OnComplete(() =>
                         {
-                            SceneManager.LoadScene(nextSceneIndex);
-                        }
+                            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+                            if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+                            {
+                                SceneManager.LoadScene(nextSceneIndex);
+                            }
+
+                        });
                         break;
                 }
             }
