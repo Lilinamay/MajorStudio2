@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class PlayerWalk : MonoBehaviour
 {
@@ -50,8 +51,8 @@ public class PlayerWalk : MonoBehaviour
                     down = true;
                     currentTween = DOTween.To(() => speed, x => speed = x, 0, 1).SetEase(Ease.InQuart).OnComplete(() =>
                       {
-                    //stop animation
-                    animator.SetBool("walk", false);
+                          //stop animation
+                          animator.SetBool("walk", false);
                           Ganimator.SetBool("walk", false);
                           Debug.Log("finished");
                           currentTween = null;
@@ -75,24 +76,40 @@ public class PlayerWalk : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name== "camTrigger")
+        if (collision.name == "camTrigger")
         {
             Debug.Log("triggered");
             camTrigger = true;
         }
-        if(collision.name == "boyTrigger")
+        if (collision.name == "boyTrigger")
         {
             Debug.Log("triggered");
             boyed = true;
             animator.SetBool("walk", false);
             Ganimator.SetBool("walk", false);
-            
+            StartCoroutine(Boys());
         }
     }
-    
+
     IEnumerator Boys()
     {
         yield return new WaitForSeconds(0.1f);
-        boy.transform.DOJump(new Vector3(-14.4F, -1.17F, 0), 0.5F, 1, 0.5F);
+        boy.transform.DOJump(new Vector3(-14.4F, -1.17F, 0), 0.5F, 1, 0.5F).OnComplete(() =>
+        {
+            boy.GetComponent<Animator>().SetTrigger("attack2");
+            StartCoroutine(trans());
+
+        });
+
+    }
+
+    IEnumerator trans()
+    {
+        yield return new WaitForSeconds(1.5f);
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
     }
 }
